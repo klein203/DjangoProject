@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ hello }}</title>
+</head>
+<body>
+<h1>{{ hello }}</h1>
+{% if flag == True %}
+flag is true
+{% endif %}
+
+<ul>
+{% for ele in lst %}
+    <li>{{ ele }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>
