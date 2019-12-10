@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 from django.conf.urls import url
-from DjangoProject import view
+from . import view, testdb
 
 urlpatterns = [
-    url('hello/', view.hello),
+    url(r'^hello$', view.hello),
+    url(r'^testdb$', testdb.testdb),
     path('admin/', admin.site.urls),
 ]
