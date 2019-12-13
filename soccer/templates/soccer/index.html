@@ -1,0 +1,9 @@
+{% if latest_match_list %}
+    <ul>
+    {% for match in latest_match_list %}
+        <li>{{ match.name }}-{{ match.home_team }} {{ match.home_team_score }} {{ match.away_team_score }} {{ match.away_team }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No matches are available.</p>
+{% endif %}
