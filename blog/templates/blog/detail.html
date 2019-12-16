@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>博客详情页</title>
-</head>
-<body>
-<h1>博客{{ blog_id }}的详情</h1>
+{% extends 'blog/base/detail.html' %}
 
-</body>
-</html>
+{% block title %}博客首页 - {{ blog_id }}{% endblock %}
