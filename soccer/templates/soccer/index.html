@@ -1,9 +1,0 @@
-{% if latest_match_list %}
-    <ul>
-    {% for match in latest_match_list %}
-        <li>[{{ match.schedule }}] {{ match.home_team }} {{ match.home_score|default:' - ' }}:{{ match.away_score|default:' - ' }} {{ match.away_team }} @{{ match.schedule_date}}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No matches are available.</p>
-{% endif %}
