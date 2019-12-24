@@ -24,6 +24,7 @@
 </head>
 
 <body id="page-top">
+  {% csrf_token %}
   <!-- Navbar -->
   {% include 'soccer/navbar.html' %}
 
@@ -52,7 +53,6 @@
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                {% csrf_token %}
                 <thead>
                   <tr>
                     <th>schedule</th>

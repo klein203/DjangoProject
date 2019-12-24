@@ -24,11 +24,14 @@ import json
 def matches(request):
     return render(request, template_name='soccer/match.html')
 
-@csrf_exempt
+# @csrf_exempt
 def api_match_fetch_all(request):
-    print('=====================================================')
     if request.method == 'GET':
         return HttpResponse(json.dumps("do not support GET method"), content_type="application/json")
+
+    print('==========================api_match_fetch_all===========================')
+    for item in request.POST.items():
+        print(item)
 
     all_matches = Match.objects.order_by('schedule_date')
 
@@ -69,9 +72,9 @@ def api_match_fetch_all(request):
         'recordsFiltered': paginator.count,
         'data': data
     }
-    print('=====================================================')
+    print('==========================api_match_fetch_all===========================')
 
-    return HttpResponse(json.dumps(resp), content_type="application/json")
+    return HttpResponse(json.dumps(resp), content_type="application/json", )
 
 def dashboard(request):
     return render(request, 'soccer/dashboard.html', locals())
@@ -79,3 +82,4 @@ def dashboard(request):
 def charts(request):
     return render(request, 'soccer/charts.html', locals())
 
+from django.middleware.csrf import CsrfViewMiddleware
