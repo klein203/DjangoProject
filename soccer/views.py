@@ -73,8 +73,7 @@ def api_match_fetch_all(request):
         'data': data
     }
     print('==========================api_match_fetch_all===========================')
-
-    return HttpResponse(json.dumps(resp), content_type="application/json", )
+    return HttpResponse(json.dumps(resp), content_type="application/json")
 
 def dashboard(request):
     return render(request, 'soccer/dashboard.html', locals())
@@ -82,4 +81,11 @@ def dashboard(request):
 def charts(request):
     return render(request, 'soccer/charts.html', locals())
 
-from django.middleware.csrf import CsrfViewMiddleware
+def login(request):
+    return render(request, 'soccer/login.html', locals())
+
+def register(request):
+    return render(request, 'soccer/register.html', locals())
+
+def forgot_password(request):
+    return render(request, 'soccer/forgot-password.html', locals())
