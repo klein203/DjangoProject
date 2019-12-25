@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 
 from .models import Match
 import json
@@ -21,8 +22,10 @@ import json
 #     question = get_object_or_404(Match, pk=question_id)
 #     return render(request, 'polls/detail.html', {'question': question})
 
+
 def matches(request):
     return render(request, template_name='soccer/match.html')
+
 
 # @csrf_exempt
 def api_match_fetch_all(request):
@@ -43,8 +46,9 @@ def api_match_fetch_all(request):
     print("length =", length)
     paginator = Paginator(object_list=all_matches, per_page=length)
 
+    matches = None
     try:
-        print("page index (est.) =", start // length)
+        # print("page index (est.) =", start // length)
         matches = paginator.page(start // length)
     except PageNotAnInteger:
         matches = paginator.page(1)
@@ -75,17 +79,22 @@ def api_match_fetch_all(request):
     print('==========================api_match_fetch_all===========================')
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
+
 def dashboard(request):
     return render(request, 'soccer/dashboard.html', locals())
+
 
 def charts(request):
     return render(request, 'soccer/charts.html', locals())
 
+
 def login(request):
     return render(request, 'soccer/login.html', locals())
 
+
 def register(request):
     return render(request, 'soccer/register.html', locals())
+
 
 def forgot_password(request):
     return render(request, 'soccer/forgot-password.html', locals())
