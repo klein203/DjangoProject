@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import User
 from .models import Nation, Team, League, Schedule, Match
 
 
@@ -60,3 +61,4 @@ admin.site.register(Nation)
 admin.site.register(Team, TeamAdmin)
 admin.site.register(League, LeagueAdmin)
 admin.site.register(Schedule, ScheduleAdmin)
+admin.site.register(User)

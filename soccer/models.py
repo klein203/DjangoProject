@@ -79,3 +79,25 @@ class Match(models.Model):
     class Meta:
         verbose_name = r'比赛'
         verbose_name_plural = verbose_name
+
+
+class User(models.Model):
+    gender_choices = (
+        ('male', "男"),
+        ('female', "女"),
+    )
+
+    name = models.CharField(name='name', verbose_name=r'账户', max_length=128, unique=True)
+    password = models.CharField(name='password', verbose_name=r'密码', max_length=256)
+    email = models.EmailField(name='email', verbose_name=r'电子邮件', unique=True)
+    gender = models.CharField(name='gender', verbose_name=r'性别', max_length=32, choices=gender_choices, default="男")
+    create_time = models.DateTimeField(name='create_time', verbose_name=r'创建时间', auto_now_add=True)
+    update_time = models.DateTimeField(name='update_time', verbose_name=r'更新时间', auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["create_time"]
+        verbose_name = r'用户'
+        verbose_name_plural = verbose_name
