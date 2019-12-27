@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Nation, Team, League, Schedule, Match
+from .models import Test
 
 
 # Register your models here.
@@ -60,3 +61,4 @@ admin.site.register(Nation)
 admin.site.register(Team, TeamAdmin)
 admin.site.register(League, LeagueAdmin)
 admin.site.register(Schedule, ScheduleAdmin)
+admin.site.register(Test)

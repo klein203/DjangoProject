@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import TestView
 
 
 app_name = 'soccer'
@@ -14,4 +15,5 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('register', views.register, name='register'),
     path('forgot-password', views.forgot_password, name='forgot-password'),
+    path('test', TestView.as_view(), name='test'),
 ]

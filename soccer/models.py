@@ -79,3 +79,17 @@ class Match(models.Model):
     class Meta:
         verbose_name = r'比赛'
         verbose_name_plural = verbose_name
+
+
+class Test(models.Model):
+    name = models.CharField(name='name', verbose_name=r'姓名', max_length=100)
+    age = models.IntegerField(name='age', verbose_name=r'年龄')
+    create_time = models.DateTimeField(name='create_time', verbose_name=r'创建时间', auto_now_add=True)
+    update_time = models.DateTimeField(name='update_time', verbose_name=r'更新时间', auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = r'测试'
+        verbose_name_plural = verbose_name
