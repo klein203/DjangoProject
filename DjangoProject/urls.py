@@ -20,8 +20,9 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=r'static/favicon.ico')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('soccer/', include('soccer.urls')),
     path('blog/', include('blog.urls')),
-    path('polls/', include('polls.urls')),
+    path('catalog/', include('catalog.urls')),
     path('admin/', admin.site.urls),
 ]
