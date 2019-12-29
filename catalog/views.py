@@ -1,7 +1,9 @@
 import datetime
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from .models import Book, BookInstance, Author
@@ -102,14 +104,15 @@ def renew_book_librarian(request, pk):
         form = RenewBookModelForm(request.POST)
 
         if form.is_valid():
-            book_instance.due_back = form.cleaned_data['renewal_date']
+            # book_instance.due_back = form.cleaned_data['renewal_date']
+            book_instance.due_back = form.cleaned_data['due_back']
             book_instance.save()
 
             return HttpResponseRedirect(reverse('catalog:all-borrowed'))
     else:
         proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
         # form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
-        form = RenewBookModelForm(initial={'renewal_date': proposed_renewal_date})
+        form = RenewBookModelForm(initial={'due_back': proposed_renewal_date})
 
     context = {
         'form': form,
@@ -117,3 +120,42 @@ def renew_book_librarian(request, pk):
     }
 
     return render(request, 'catalog/book_renew_librarian.html', context)
+
+
+class AuthorCreate(LoginRequiredMixin, CreateView):
+    model = Author
+    fields = '__all__'
+    initial = {'date_of_death': '2099/01/01'}
+    # template_name = 'author_form.html'
+    # success_url = reverse_lazy('catalog:authors')
+
+
+class AuthorUpdate(LoginRequiredMixin, UpdateView):
+    model = Author
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
+    # success_url = reverse_lazy('catalog:author-detail', self.id)
+
+
+class AuthorDelete(LoginRequiredMixin, DeleteView):
+    model = Author
+    # template_name = 'author_confirm_delete.html'
+    success_url = reverse_lazy('catalog:authors')
+
+
+class BookCreate(LoginRequiredMixin, CreateView):
+    model = Book
+    fields = '__all__'
+    # template_name = 'book_form.html'
+    # success_url = reverse_lazy('catalog:books')
+
+
+class BookUpdate(LoginRequiredMixin, UpdateView):
+    model = Book
+    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language']
+    # success_url = reverse_lazy('catalog:book-detail', self.id)
+
+
+class BookDelete(LoginRequiredMixin, DeleteView):
+    model = Book
+    # template_name = 'book_confirm_delete.html'
+    success_url = reverse_lazy('catalog:books')
