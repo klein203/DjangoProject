@@ -145,3 +145,12 @@ STATICFILES_DIRS = [
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/catalog'
+
+# password reset email setting
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST_USER = "klein203@hotmail.com"
+EMAIL_HOST_PASSWORD='12345678'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "klein203@hotmail.com"
+EMAIL_BACKEND= "django.core.mail.backends.console.EmailBackend"
