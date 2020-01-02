@@ -37,14 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
     'soccer.apps.SoccerConfig',
-    'blog.apps.BlogConfig',
-    'catalog.apps.CatalogConfig',
+    # 'catalog.apps.CatalogConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware', # Manages sessions across requests
+    'django.contrib.sessions.middleware.SessionMiddleware',     # Manages sessions across requests
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',  # Associates users with requests using sessions.
@@ -124,9 +124,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'blog', 'static'),
+    os.path.join(BASE_DIR, 'accounts', 'static'),
     os.path.join(BASE_DIR, 'soccer', 'static'),
-    os.path.join(BASE_DIR, 'catalog', 'static'),
+    # os.path.join(BASE_DIR, 'catalog', 'static'),
 ]
 
 
@@ -144,7 +144,8 @@ STATICFILES_DIRS = [
 # CSRF_USE_SESSIONS = False
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/catalog'
+LOGIN_REDIRECT_URL = '/soccer'
+# LOGOUT_REDIRECT_URL = '/accounts/logout'
 
 # password reset email setting
 EMAIL_HOST = 'smtp.office365.com'
@@ -153,4 +154,4 @@ EMAIL_HOST_PASSWORD='12345678'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "klein203@hotmail.com"
-EMAIL_BACKEND= "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

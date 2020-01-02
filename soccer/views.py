@@ -1,29 +1,13 @@
 from django.shortcuts import render, get_object_or_404
-from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 from django.views import generic
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import FormView
-from django.contrib.auth.models import User
 from .models import Match
-from .forms import RegisterForm, TestForm
 import json
 
+
 # Create your views here.
-# class IndexView(generic.ListView):
-#     template_name = 'soccer/index.html'
-#     context_object_name = 'latest_match_list'
-#
-#     def get_queryset(self):
-#         # return Match.objects.filter(pub_date__lte=timezone.now())
-#         return Match.objects.order_by('schedule_date')
-
-# def detail(request, question_id):
-#     question = get_object_or_404(Match, pk=question_id)
-#     return render(request, 'polls/detail.html', {'question': question})
-
-
 def matches(request):
     return render(request, template_name='soccer/match.html')
 
@@ -81,45 +65,10 @@ def api_match_fetch_all(request):
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
 
-def dashboard(request):
-    return render(request, 'soccer/dashboard.html', locals())
+@login_required
+def index(request):
+    return render(request, 'index.html', locals())
 
 
 def charts(request):
     return render(request, 'soccer/charts.html', locals())
-
-
-def login(request):
-    return render(request, 'soccer/login.html', locals())
-
-
-def forgot_password(request):
-    return render(request, 'soccer/forgot-password.html', locals())
-
-
-def register(request):
-
-    return render(request, 'soccer/register.html', locals())
-    try:
-        User.objects.get(username=username)
-        data = {'code': '-7', 'info': u'用户已存在'}
-    except User.DoesNotExist:
-        user = User.objects.create_user(username, email, password)
-        if user is not None:
-            user.is_active = False
-            user.save()
-
-
-class RegisterView(FormView):
-    form_class = RegisterForm
-    template_name = 'soccer/register.html'
-    context_object_name = 'register_object'
-    #
-    # def get_form_kwargs(self):
-    #     kw
-
-
-class TestView(FormView):
-    form_class = TestForm
-    template_name = 'soccer/test.html'
-    context_object_name = 'test_obj'
