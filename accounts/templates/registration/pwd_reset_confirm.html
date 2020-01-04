@@ -1,0 +1,35 @@
+{% extends "reg_generic.html" %}
+
+{% block title %}<title>Confirm New Password</title>{% endblock %}
+
+{% block content %}
+<div class="card card-login mx-auto mt-5">
+    <div class="card-header">Confirm new password</div>
+    <div class="card-body">
+    {% if validlink %}
+    <p>Please enter (and confirm) your new password.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+        <div class="form-label-group">
+            {{ form.new_password1.errors }}
+            <label for="{{ form.new_password1.id_for_label }}">{{ form.new_password1.label_tag }}</label>
+            <input type="password" id="{{ form.new_password1.id_for_label }}" name="{{ form.new_password1.name }}" class="form-control" placeholder="Password" required="required" autofocus="autofocus">
+        </div>
+        </div>
+        <div class="form-group">
+        <div class="form-label-group">
+            {{ form.new_password2.errors }}
+            <label for="{{ form.new_password2.id_for_label }}">{{ form.new_password2.label_tag }}</label>
+            <input type="password" id="{{ form.new_password2.id_for_label }}" name="{{ form.new_password2.name }}" class="form-control" placeholder="Confirm Password" required="required">
+        </div>
+        </div>
+        <input type="submit" value="Change my password" class="btn btn-primary btn-block"/>
+    </form>
+    {% else %}
+    <h1>Password reset failed</h1>
+    <p>The password reset link was invalid, possibly because it has already been used. Please request a new password reset.</p>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

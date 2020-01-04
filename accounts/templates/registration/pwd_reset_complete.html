@@ -1,0 +1,15 @@
+{% extends "reg_generic.html" %}
+
+{% block title %}<title>Password Changed</title>{% endblock %}
+
+{% block content %}
+<div class="card card-login mx-auto mt-5">
+    <div class="card-header">Password Changed</div>
+    <div class="card-body">
+        <div class="text-center">
+          <p>The password has been changed!</p>
+          <p><a href="{% url 'accounts:login'%}" class="info">Click here to login again.</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

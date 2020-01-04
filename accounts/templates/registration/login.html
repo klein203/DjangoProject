@@ -3,51 +3,51 @@
 {% block title %}<title>Login</title>{% endblock %}
 
 {% block content %}
-    <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Login</div>
-      <div class="card-body">
+<div class="card card-login mx-auto mt-5">
+    <div class="card-header">Login</div>
+    <div class="card-body">
         {% if form.errors %}
         <p class="alert-danger">Your username and password didn't match. Please try again.</p>
         {% endif %}
 
         {% if next %}
-          {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
         <p class="alert-danger">Your account doesn't have access to this page. To proceed,
             please login with an account that has access.</p>
-          {% else %}
+            {% else %}
         <p class="alert-danger">Please login to see this page.</p>
-          {% endif %}
+            {% endif %}
         {% endif %}
 
-        <form method="post" action="{% url 'accounts:login' %}">
-          {% csrf_token %}
-          <div class="form-group">
-            <div class="form-label-group">
-              <label for="{{ form.username.id_for_label }}">{{ form.username.label_tag }}</label>
-              <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" class="form-control" placeholder="Account Name" required="required" autofocus="autofocus">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="form-label-group">
+                    <label for="{{ form.username.id_for_label }}">{{ form.username.label_tag }}</label>
+                    <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" class="form-control" placeholder="Account Name" required="required" autofocus="autofocus">
+                </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="form-label-group">
-              <label for="{{ form.password.id_for_label }}">{{ form.password.label_tag }}</label>
-              <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" class="form-control" placeholder="Password" required="required">
+            <div class="form-group">
+                <div class="form-label-group">
+                    <label for="{{ form.password.id_for_label }}">{{ form.password.label_tag }}</label>
+                    <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" class="form-control" placeholder="Password" required="required">
+                </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me">
-                Remember Password
-              </label>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me">
+                        Remember Password
+                    </label>
+                </div>
             </div>
-          </div>
-          <input type="submit" value="Login" class="btn btn-primary btn-block"/>
-          <input type="hidden" name="next" value="{{ next }}" />
+            <input type="submit" value="Login" class="btn btn-primary btn-block"/>
+            <input type="hidden" name="next" value="{{ next }}" />
         </form>
         <div class="text-center">
-<!--          <a class="d-block small mt-3" href="">Register an Account</a>-->
-          <a class="d-block small" href="{% url 'accounts:password_reset' %}">Forgot Password?</a>
+<!--            <a class="d-block small mt-3" href="">Register an Account</a>-->
+            <a class="d-block small" href="{% url 'accounts:password_reset' %}">Forgot Password?</a>
         </div>
-      </div>
     </div>
+</div>
 {% endblock %}
