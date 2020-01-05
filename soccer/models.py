@@ -63,9 +63,9 @@ class Schedule(models.Model):
 
 class Match(models.Model):
     # name = models.CharField(name='name', verbose_name=r'比赛', max_length=100)
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, related_name='schedule', verbose_name=r'轮次')
-    home_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='home_team', verbose_name=r'主队')
-    away_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='away_team', verbose_name=r'客队')
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, verbose_name=r'轮次')
+    home_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='home_team_set', verbose_name=r'主队')
+    away_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='away_team_set', verbose_name=r'客队')
     home_score = models.IntegerField(name='home_score', verbose_name=r'主队得分', null=True, blank=True)
     away_score = models.IntegerField(name='away_score', verbose_name=r'客队得分', null=True, blank=True)
     schedule_date = models.DateField(name='schedule_date', verbose_name=r'预计比赛日期')
