@@ -1,19 +1,21 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Book List</h1>
-  {% if user.is_staff %}
-  <a href="{% url 'catalog:book-create' %}">[NEW]</a>
-  {% endif %}
-  {% if book_list %}
-  <ul>
+<h1>Book List</h1>
+{% if user.is_staff %}
+<a href="{% url 'catalog:book-create' %}">[NEW]</a>
+{% endif %}
+{% if book_list %}
+<ul>
     {% for book in book_list %}
-      <li>
-        <a href="{% url 'catalog:book-detail' book.pk %}">{{ book.title }}</a> ({{book.author}}) {% if user.is_staff %}<a href="{% url 'catalog:book-update' book.id %}">[EDIT]</a><a href="{% url 'catalog:book-delete' book.id %}">[DEL]</a> {% endif %}
-      </li>
+    <li>
+        <a href="{% url 'catalog:book-detail' book.pk %}">{{ book.title }}</a> ({{book.author}}) {% if user.is_staff
+        %}<a href="{% url 'catalog:book-update' book.id %}">[EDIT]</a><a href="{% url 'catalog:book-delete' book.id %}">[DEL]</a>
+        {% endif %}
+    </li>
     {% endfor %}
-  </ul>
-  {% else %}
-    <p>There are no books in the library.</p>
-  {% endif %}       
+</ul>
+{% else %}
+<p>There are no books in the library.</p>
+{% endif %}
 {% endblock %}

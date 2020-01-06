@@ -1,19 +1,22 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Author List</h1>
-  {% if user.is_staff %}
-  <a href="{% url 'catalog:author-create' %}">[NEW]</a>
-  {% endif %}
-  {% if author_list %}
-  <ul>
+<h1>Author List</h1>
+{% if user.is_staff %}
+<a href="{% url 'catalog:author-create' %}">[NEW]</a>
+{% endif %}
+{% if author_list %}
+<ul>
     {% for author in author_list %}
-      <li>
-        <a href="{% url 'catalog:author-detail' author.pk %}">{{ author }} ({{ author.date_of_birth|default:'' }} - {{ author.date_of_death|default:'' }})</a>{% if user.is_staff %} - <a href="{% url 'catalog:author-update' author.pk %}">[EDIT]</a> <a href="{% url 'catalog:author-delete' author.pk %}">[DEL]</a> {% endif %}
-      </li>
+    <li>
+        <a href="{% url 'catalog:author-detail' author.pk %}">{{ author }} ({{ author.date_of_birth|default:'' }} - {{
+            author.date_of_death|default:'' }})</a>{% if user.is_staff %} - <a
+            href="{% url 'catalog:author-update' author.pk %}">[EDIT]</a> <a
+            href="{% url 'catalog:author-delete' author.pk %}">[DEL]</a> {% endif %}
+    </li>
     {% endfor %}
-  </ul>
-  {% else %}
-    <p>There are no authors in the library.</p>
-  {% endif %}
+</ul>
+{% else %}
+<p>There are no authors in the library.</p>
+{% endif %}
 {% endblock %}
