@@ -1,13 +1,19 @@
 from django.shortcuts import render
-from django.views import generic
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .models import Simple
+from .models import Record
 
 
 # Create your views here.
-class SimpleListView(LoginRequiredMixin, generic.ListView):
-    model = Simple
-    template_name = 'demo/simple_list.html'
+class RecordListView(LoginRequiredMixin, ListView):
+    model = Record
+    # template_name = 'demo/record_list.html'
+    # context_object_name = 'object'
 
-    def get_queryset(self):
-        return Simple.objects.all()
+    # def get_queryset(self):
+    #     return Record.objects.all()
+
+
+class RecordDetailView(LoginRequiredMixin, DetailView):
+    model = Record
+    # template_name = 'demo/record_detail.html'
