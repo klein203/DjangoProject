@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import Simple
+from .models import Record
 
 
-class SimpleModelForm(ModelForm):
+class RecordModelForm(ModelForm):
     class Meta:
-        model = Simple
+        model = Record
         fields = "__all__"
