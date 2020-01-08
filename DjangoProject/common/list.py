@@ -1,141 +1,93 @@
-from django.views.generic.list import BaseListView
-from DjangoProject.common.response import JsonResponseMixin
-from django.views.generic.base import ContextMixin
-from django.core.paginator import InvalidPage, Paginator
-from django.core.exceptions import ImproperlyConfigured
-from django.db.models.query import QuerySet
-from django.http import Http404
-from django.utils.translation import gettext as _
+from django.views.generic.list import MultipleObjectMixin
+from django.views.generic.base import View
+from DjangoProject.common.response import CustomizedJsonResponseMixin
 
 
-class MultipleJsonObjectMixin(ContextMixin):
-    """A mixin for views manipulating multiple objects."""
-    queryset = None
-    model = None
-    paginate_by = None
-    paginate_orphans = 0
-    context_object_name = None
-    paginator_class = Paginator
-    page_kwarg = 'page'
-    ordering = None
-
-    def get_queryset(self):
-        """
-        Return the list of items for this view.
-
-        The return value must be an iterable and may be an instance of
-        `QuerySet` in which case `QuerySet` specific behavior will be enabled.
-        """
-        if self.queryset is not None:
-            queryset = self.queryset
-            if isinstance(queryset, QuerySet):
-                queryset = queryset.all()
-        elif self.model is not None:
-            queryset = self.model._default_manager.all()
-        else:
-            raise ImproperlyConfigured(
-                "%(cls)s is missing a QuerySet. Define "
-                "%(cls)s.model, %(cls)s.queryset, or override "
-                "%(cls)s.get_queryset()." % {
-                    'cls': self.__class__.__name__
-                }
-            )
-        ordering = self.get_ordering()
-        if ordering:
-            if isinstance(ordering, str):
-                ordering = (ordering,)
-            queryset = queryset.order_by(*ordering)
-
-        return queryset
-
-    def get_ordering(self):
-        """Return the field or fields to use for ordering the queryset."""
-        return self.ordering
-
-    def paginate_queryset(self, queryset, page_size):
-        """Paginate the queryset, if needed."""
-        paginator = self.get_paginator(
-            queryset, page_size, orphans=self.get_paginate_orphans())
-        page_kwarg = self.page_kwarg
-        page = self.kwargs.get(page_kwarg) or self.request.GET.get(page_kwarg) or 1
-        try:
-            page_number = int(page)
-        except ValueError:
-            if page == 'last':
-                page_number = paginator.num_pages
-            else:
-                raise Http404(_('Page is not “last”, nor can it be converted to an int.'))
-        try:
-            page = paginator.page(page_number)
-            return (paginator, page, page.object_list, page.has_other_pages())
-        except InvalidPage as e:
-            raise Http404(_('Invalid page (%(page_number)s): %(message)s') % {
-                'page_number': page_number,
-                'message': str(e)
-            })
-
-    def get_paginate_by(self, queryset):
-        """
-        Get the number of items to paginate by, or ``None`` for no pagination.
-        """
-        return self.paginate_by
-
-    def get_paginator(self, queryset, per_page, orphans=0,
-                      allow_empty_first_page=True, **kwargs):
-        """Return an instance of the paginator for this view."""
-        return self.paginator_class(
-            queryset, per_page, orphans=orphans,
-            allow_empty_first_page=allow_empty_first_page, **kwargs)
-
-    def get_paginate_orphans(self):
-        """
-        Return the maximum number of orphans extend the last page by when
-        paginating.
-        """
-        return self.paginate_orphans
-
-    def get_context_object_name(self, object_list):
-        """Get the name of the item to be used in the context."""
-        if self.context_object_name:
-            return self.context_object_name
-        elif hasattr(object_list, 'model'):
-            return '%s_list' % object_list.model._meta.model_name
-        else:
-            return None
+class MultipleJsonObjectMixin(MultipleObjectMixin):
+    return_code_name = 'code'
+    return_message_name = 'msg'
+    data_object_name = 'data'
+    paginator_object_name = 'page'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         """Get the context for this view."""
         queryset = object_list if object_list is not None else self.object_list
         page_size = self.get_paginate_by(queryset)
         context_object_name = self.get_context_object_name(queryset)
+        return_code_name = self.get_return_code_name()
+        return_message_name = self.get_return_message_name()
+        data_object_name = self.get_data_object_name()
+        paginator_object_name = self.get_paginator_object_name()
+
         if page_size:
             paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
             context = {
-                'paginator': paginator,
-                'page_obj': page,
-                'is_paginated': is_paginated,
+                return_code_name: 0,
+                return_message_name: 'success',
+                data_object_name: page,
+                paginator_object_name: {
+                    'per_page': paginator.per_page,
+                    'page': page.number,
+                    'count': paginator.count,
+                    'is_paginated': is_paginated,
+                },
                 'object_list': queryset
             }
         else:
             context = {
-                'paginator': None,
-                'page_obj': None,
-                'is_paginated': False,
+                return_code_name: 0,
+                return_message_name: 'success',
+                data_object_name: queryset,
+                paginator_object_name: {
+                    'per_page': None,
+                    'page': None,
+                    'count': queryset.count,
+                    'is_paginated': False,
+                },
                 'object_list': queryset
             }
         if context_object_name is not None:
             context[context_object_name] = queryset
         context.update(kwargs)
-        return super().get_context_data(**context)
+        return super(MultipleObjectMixin, self).get_context_data(**context)
+
+    def get_context_object_name(self, object_list):
+        """Get the name of the item to be used in the context."""
+        if self.context_object_name:
+            return self.context_object_name
+        else:
+            return None
+
+    def get_return_code_name(self):
+        if self.return_code_name == None:
+            self.return_code_name = 'code'
+        return self.return_code_name
+
+    def get_return_message_name(self):
+        if self.return_message_name == None:
+            self.return_message_name = 'msg'
+        return self.return_message_name
+
+    def get_data_object_name(self):
+        if self.data_object_name == None:
+            self.data_object_name = 'data'
+        return self.data_object_name
+
+    def get_paginator_object_name(self):
+        if self.paginator_object_name == None:
+            self.paginator_object_name = 'page'
+        return self.paginator_object_name
 
 
-class JsonListView(JsonResponseMixin, BaseListView):
-    http_method_names = ['post', ]
-
-    def get_allow_empty(self):
-        return True
-
-    def post(self, request, *args, **kwargs):
+class BaseJsonListView(MultipleJsonObjectMixin, View):
+    def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
         return self.render_to_json_response(context)
+
+    def post(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
+
+
+class JsonListView(BaseJsonListView, CustomizedJsonResponseMixin):
+    http_method_names = ['post', 'get']
