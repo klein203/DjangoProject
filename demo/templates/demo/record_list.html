@@ -1,8 +1,8 @@
 {% extends "common/base.html" %}
 {% load bootstrap_pagination %}
+{% load i18n %}
 
 {% block title %}<title>Record List</title>{% endblock %}
-
 {% block content %}
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
@@ -12,42 +12,58 @@
         <li class="breadcrumb-item active">Record List (Class)</li>
     </ol>
 
-    <!-- DataTables -->
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fas fa-table"></i>
+            <span class="fas fa-table"></span>
             Record List
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>age</th>
-                        <th>gender</th>
-                        <th>date_of_birth</th>
-                        <th>create_time</th>
-                        <th>update_time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for obj in object_list %}
-                        <tr>
-                            <td><a href="{% url 'demo:record-detail' obj.pk %}">{{ obj.pk }}</a></td>
-                            <td>{{ obj.name }}</td>
-                            <td>{{ obj.age }}</td>
-                            <td>{{ obj.gender }}</td>
-                            <td>{{ obj.date_of_birth }}</td>
-                            <td>{{ obj.create_time }}</td>
-                            <td>{{ obj.update_time }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{% trans 'Record.Name' %}</th>
+                                <th>{% trans 'Record.Age' %}</th>
+                                <th>{% trans 'Record.Gender' %}</th>
+                                <th>{% trans 'Record.DateOfBirth' %}</th>
+                                <th>{% trans 'Record.CreateTime' %}</th>
+                                <th>{% trans 'Record.UpdateTime' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for obj in object_list %}
+                                <tr>
+                                    <td><a href="{% url 'demo:record-detail' obj.pk %}">{{ obj.pk }}</a></td>
+                                    <td>{{ obj.name }}</td>
+                                    <td>{{ obj.age }}</td>
+                                    <td>{{ obj.gender }}</td>
+                                    <td>{{ obj.date_of_birth }}</td>
+                                    <td>{{ obj.create_time }}</td>
+                                    <td>{{ obj.update_time }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% bootstrap_paginate page_obj show_first_last="true" extra_pagination_classes="justify-content-center" %}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        <div class="card-footer small text-muted" id="update_time"></div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="javascript">
+    $(document).ready(function() {
+        $("#update_time").innerHTML('123');
+    });
+    </script>
 {% endblock %}

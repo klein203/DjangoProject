@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -47,14 +49,15 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',     # Manages sessions across requests
+    'django.middleware.locale.LocaleMiddleware',    # i18n
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Associates users with requests using sessions.
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Associates users with requests using sessions
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'conf.urls'
 
 TEMPLATES = [
     {
@@ -65,6 +68,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                # 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -72,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'conf.wsgi.application'
 
 
 # Database
@@ -107,12 +111,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
+LANGUAGES = (
+    ('zh-hans', _('Simplified Chinese')),
+    ('en', _('English')),
+)
 
 LANGUAGE_CODE = 'zh-hans'
-TIME_ZONE = 'Asia/Shanghai'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+
+TIME_ZONE = 'Asia/Shanghai'
+USE_TZ = False
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'conf', 'locale'),
+)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -131,7 +144,7 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/accounts/profile'
 
 
-if os.path.isfile('core/local_settings.py'):
+if os.path.isfile(os.path.join('conf', 'local_settings.py')):
     from .local_settings import *
 else:
-    print("No local settings file found")
+    print(_("No local settings file found"))

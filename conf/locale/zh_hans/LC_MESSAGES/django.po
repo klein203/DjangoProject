@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-01 23:12+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\catalog\forms.py:16 .\catalog\forms.py:32
+msgid "Invalid date - renewal in past"
+msgstr ""
+
+#: .\catalog\forms.py:20 .\catalog\forms.py:36
+msgid "Invalid date - renewal more than 4 weeks ahead"
+msgstr ""
+
+#: .\catalog\forms.py:44
+msgid "New renewal date"
+msgstr ""
+
+#: .\catalog\forms.py:45
+msgid "Enter a date between now and 4 weeks (default 3)."
+msgstr ""
+
+#: .\conf\settings.py:115
+msgid "Simplified Chinese"
+msgstr "简体中文"
+
+#: .\conf\settings.py:116
+msgid "English"
+msgstr "English"
+
+#: .\conf\settings.py:150
+msgid "No local settings file found"
+msgstr "没有设置本地化配置文件"
+
+#: .\demo\models.py:8
+msgid "Record.Name"
+msgstr "姓名"
+
+#: .\demo\models.py:9
+msgid "Record.Age"
+msgstr "年龄"
+
+#: .\demo\models.py:10
+msgid "Record.Gender"
+msgstr "性别"
+
+#: .\demo\models.py:11
+msgid "DICT.GENDER.Male"
+msgstr "男"
+
+#: .\demo\models.py:12
+msgid "DICT.GENDER.Female"
+msgstr "女"
+
+#: .\demo\models.py:14
+msgid "Record.DateOfBirth"
+msgstr "生日"
+
+#: .\demo\models.py:15
+msgid "Record.CreateTime"
+msgstr "创建时间"
+
+#: .\demo\models.py:16
+msgid "Record.UpdateTime"
+msgstr "更新时间"
+
+#: .\demo\models.py:23
+msgid "Record"
+msgstr "记录"
+
+#: .\demo\models.py:24
+msgid "Records"
+msgstr "记录"
+
+#: .\templates\common\base.html:95
+msgid "demo"
+msgstr "演示"

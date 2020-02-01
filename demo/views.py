@@ -1,15 +1,15 @@
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import Record
-from core.common.list import JsonListView
+from conf.common.list import JsonListView
 from django.http.response import JsonResponse
 import datetime
 
 
 # Create your views here.
-class RecordListView(ListView):
+class RecordListView(LoginRequiredMixin, ListView):
     model = Record
-    paginate_by = 5
+    paginate_by = 1
     # template_name = 'demo/record_list.html'
     # context_object_name = 'object'
 

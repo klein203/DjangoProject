@@ -35,16 +35,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ADMIN_EMAIL = "you@your_email.com"
 URL_FOR_LINKS = "https://crm.example.com"
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
-LANGUAGE_CODE = 'zh-hans'
-TIME_ZONE = 'Asia/Shanghai'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-
-
 # default settings for CSRF
 # CSRF_COOKIE_AGE = 31449600
 # CSRF_COOKIE_DOMAIN = None

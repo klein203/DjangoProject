@@ -1,6 +1,6 @@
 from django.views.generic.list import MultipleObjectMixin
 from django.views.generic.base import View
-from core.common.response import CustomizedJsonResponseMixin
+from conf.common.response import CustomizedJsonResponseMixin
 
 
 class MultipleJsonObjectMixin(MultipleObjectMixin):
