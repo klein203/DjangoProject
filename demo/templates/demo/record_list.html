@@ -1,26 +1,27 @@
-{% extends "base_generic.html" %}
+{% extends "common/base.html" %}
+{% load bootstrap_pagination %}
 
-{% block title %}<title>Record</title>{% endblock %}
+{% block title %}<title>Record List</title>{% endblock %}
 
 {% block content %}
-<!-- Breadcrumbs-->
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="#">Record</a>
-    </li>
-    <li class="breadcrumb-item active">All List</li>
-</ol>
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Demo</a>
+        </li>
+        <li class="breadcrumb-item active">Record List (Class)</li>
+    </ol>
 
-<!-- DataTables Example -->
-<div class="card mb-3">
-    <div class="card-header">
-        <i class="fas fa-table"></i>
-        Record
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+    <!-- DataTables -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Record List
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                     <tr>
                         <th>id</th>
                         <th>name</th>
@@ -30,23 +31,23 @@
                         <th>create_time</th>
                         <th>update_time</th>
                     </tr>
-                </thead>
-                <tbody>
-                {% for obj in object_list %}
-                    <tr>
-                        <td><a href="{% url 'demo:record-detail' obj.pk %}">{{ obj.pk }}</a></td>
-                        <td>{{ obj.name }}</td>
-                        <td>{{ obj.age }}</td>
-                        <td>{{ obj.gender }}</td>
-                        <td>{{ obj.date_of_birth }}</td>
-                        <td>{{ obj.create_time }}</td>
-                        <td>{{ obj.update_time }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for obj in object_list %}
+                        <tr>
+                            <td><a href="{% url 'demo:record-detail' obj.pk %}">{{ obj.pk }}</a></td>
+                            <td>{{ obj.name }}</td>
+                            <td>{{ obj.age }}</td>
+                            <td>{{ obj.gender }}</td>
+                            <td>{{ obj.date_of_birth }}</td>
+                            <td>{{ obj.create_time }}</td>
+                            <td>{{ obj.update_time }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>
 {% endblock %}

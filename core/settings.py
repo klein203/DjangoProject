@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_pagination',
     'accounts.apps.AccountsConfig',
     'soccer.apps.SoccerConfig',
     'demo.apps.DemoConfig',
@@ -53,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'DjangoProject.urls'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'DjangoProject.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
@@ -108,13 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'zh-hans'
-
 TIME_ZONE = 'Asia/Shanghai'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -127,33 +124,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'accounts', 'static'),
     os.path.join(BASE_DIR, 'soccer', 'static'),
-    # os.path.join(BASE_DIR, 'catalog', 'static'),
 ]
 
 
-# default settings for CSRF
-# CSRF_COOKIE_AGE = 31449600
-# CSRF_COOKIE_DOMAIN = None
-# CSRF_COOKIE_HTTPONLY = False
-# CSRF_COOKIE_NAME = 'csrftoken'
-# CSRF_COOKIE_PATH = '/'
-# CSRF_COOKIE_SAMESITE = 'Lax'
-# CSRF_COOKIE_SECURE = False
-# CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
-# CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
-# CSRF_TRUSTED_ORIGINS = []
-# CSRF_USE_SESSIONS = False
-
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/soccer'
-# LOGOUT_REDIRECT_URL = '/accounts/logout'
+LOGIN_REDIRECT_URL = '/accounts/profile'
 
-# password reset email setting
-EMAIL_HOST = 'smtp.office365.com'
-EMAIL_HOST_USER = "klein203@hotmail.com"
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "klein203@hotmail.com"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+if os.path.isfile('core/local_settings.py'):
+    from .local_settings import *
+else:
+    print("No local settings file found")
