@@ -3,7 +3,7 @@ import os
 
 # Make this unique, and don't share it with anybody.
 # http://www.miniwebtool.com/django-secret-key-generator/
-SECRET_KEY = '4#Fe@HPx8FFXr!ak$%JkVGTK'
+SECRET_KEY = '9$@zo91aw@v-4at#s0p4kocxhfcx#&o+&carc2dc12m9v3qnrx'
 
 
 # Email Server Settings
@@ -48,5 +48,6 @@ URL_FOR_LINKS = "https://crm.example.com"
 # CSRF_TRUSTED_ORIGINS = []
 # CSRF_USE_SESSIONS = False
 
+
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/soccer'
+LOGIN_REDIRECT_URL = '/common/users/'

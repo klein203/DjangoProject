@@ -1,0 +1,4 @@
+p, anonymous, *, *
+p, admin, *, *
+g, alice, admin
+g, robert, admin

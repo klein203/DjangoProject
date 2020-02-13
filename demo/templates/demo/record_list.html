@@ -61,9 +61,10 @@
 {% endblock %}
 
 {% block javascript %}
-    <script type="javascript">
+    <script type="text/javascript">
     $(document).ready(function() {
-        $("#update_time").innerHTML('123');
-    });
+        dt = new Date()
+        $("#update_time").text("Updated " + dt.toLocaleDateString() + " at " + dt.toLocaleTimeString())
+    })
     </script>
 {% endblock %}

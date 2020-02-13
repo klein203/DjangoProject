@@ -15,8 +15,8 @@ class Record(models.Model):
     update_time = models.DateTimeField(_('Record.UpdateTime'), auto_now=True)
 
     class Meta:
-        verbose_name = _('Record')
-        verbose_name_plural = _('Records')
+        verbose_name = _('Record.ModelVerboseName')
+        verbose_name_plural = _('Record.ModelVerboseNamePlural')
 
     def __str__(self):
         return self.name

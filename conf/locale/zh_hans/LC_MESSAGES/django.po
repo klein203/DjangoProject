@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-01 23:12+0800\n"
+"POT-Creation-Date: 2020-02-13 13:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,58 +33,103 @@ msgstr ""
 msgid "Enter a date between now and 4 weeks (default 3)."
 msgstr ""
 
-#: .\conf\settings.py:115
+#: .\common\models.py:8 .\common\templates\common\user_list.html:26
+#: .\common\templates\common\user_list.html:41
+msgid "user.username"
+msgstr "用户名"
+
+#: .\common\models.py:9
+msgid "user.password"
+msgstr "密码"
+
+#: .\common\models.py:10 .\common\templates\common\user_list.html:28
+#: .\common\templates\common\user_list.html:43
+msgid "user.first_name"
+msgstr "名"
+
+#: .\common\models.py:11 .\common\templates\common\user_list.html:27
+#: .\common\templates\common\user_list.html:42
+msgid "user.last_name"
+msgstr "姓"
+
+#: .\common\models.py:12 .\common\templates\common\user_list.html:29
+#: .\common\templates\common\user_list.html:44
+msgid "user.email"
+msgstr "电子邮件"
+
+#: .\common\models.py:13 .\common\templates\common\user_list.html:33
+#: .\common\templates\common\user_list.html:48
+msgid "user.last_login"
+msgstr "上次登录时间"
+
+#: .\common\models.py:14 .\common\templates\common\user_list.html:30
+#: .\common\templates\common\user_list.html:45
+msgid "user.is_active"
+msgstr "用户状态"
+
+#: .\common\models.py:15 .\common\templates\common\user_list.html:31
+#: .\common\templates\common\user_list.html:46
+msgid "user.is_superuser"
+msgstr "超级用户"
+
+#: .\common\models.py:16 .\common\templates\common\user_list.html:32
+#: .\common\templates\common\user_list.html:47
+msgid "user.is_staff"
+msgstr "工作人员"
+
+#: .\common\models.py:17 .\common\templates\common\user_list.html:34
+#: .\common\templates\common\user_list.html:49
+msgid "user.date_joined"
+msgstr "注册时间"
+
+#: .\conf\settings.py:117
 msgid "Simplified Chinese"
 msgstr "简体中文"
 
-#: .\conf\settings.py:116
+#: .\conf\settings.py:118
 msgid "English"
 msgstr "English"
 
-#: .\conf\settings.py:150
+#: .\conf\settings.py:153
 msgid "No local settings file found"
 msgstr "没有设置本地化配置文件"
 
-#: .\demo\models.py:8
+#: .\demo\models.py:7 .\demo\templates\demo\record_list.html:28
 msgid "Record.Name"
 msgstr "姓名"
 
-#: .\demo\models.py:9
+#: .\demo\models.py:8 .\demo\templates\demo\record_list.html:29
 msgid "Record.Age"
 msgstr "年龄"
 
-#: .\demo\models.py:10
+#: .\demo\models.py:9 .\demo\templates\demo\record_list.html:30
 msgid "Record.Gender"
 msgstr "性别"
 
-#: .\demo\models.py:11
+#: .\demo\models.py:10
 msgid "DICT.GENDER.Male"
 msgstr "男"
 
-#: .\demo\models.py:12
+#: .\demo\models.py:11
 msgid "DICT.GENDER.Female"
 msgstr "女"
 
-#: .\demo\models.py:14
+#: .\demo\models.py:13 .\demo\templates\demo\record_list.html:31
 msgid "Record.DateOfBirth"
 msgstr "生日"
 
-#: .\demo\models.py:15
+#: .\demo\models.py:14 .\demo\templates\demo\record_list.html:32
 msgid "Record.CreateTime"
 msgstr "创建时间"
 
-#: .\demo\models.py:16
+#: .\demo\models.py:15 .\demo\templates\demo\record_list.html:33
 msgid "Record.UpdateTime"
 msgstr "更新时间"
 
-#: .\demo\models.py:23
-msgid "Record"
+#: .\demo\models.py:18
+msgid "Record.ModelVerboseName"
 msgstr "记录"
 
-#: .\demo\models.py:24
-msgid "Records"
+#: .\demo\models.py:19
+msgid "Record.ModelVerboseNamePlural"
 msgstr "记录"
-
-#: .\templates\common\base.html:95
-msgid "demo"
-msgstr "演示"

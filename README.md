@@ -9,6 +9,20 @@ else:
     print(_("No local settings file found"))
 ```
 
+## migrations
+- generate scripts from logical models
+```
+python manage.py makemigrations
+```
+- execute scripts to persistent layer
+```
+python manage.py migrate
+```
+- show migrations info
+```
+python manage.py showmigrations
+```
+
 ## i18n settings
 - include code below in the _setting.py_ or local setting file
 ```

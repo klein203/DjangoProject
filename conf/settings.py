@@ -33,16 +33,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',  # Core authentication framework and its default models.
     'django.contrib.contenttypes',  # Django content type system (allows permissions to be associated with models).
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap_pagination',
-    'accounts.apps.AccountsConfig',
-    'soccer.apps.SoccerConfig',
-    'demo.apps.DemoConfig',
+    # 'bootstrap_pagination',
+    'common.apps.CommonConfig',
+    # 'accounts.apps.AccountsConfig',
+    # 'soccer.apps.SoccerConfig',
+    # 'demo.apps.DemoConfig',
     # 'catalog.apps.CatalogConfig',
 ]
 
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',  # Associates users with requests using sessions
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'casbin_middleware.middleware.CasbinMiddleware',
 ]
 
 ROOT_URLCONF = 'conf.urls'
@@ -131,18 +133,19 @@ LOCALE_PATHS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'accounts', 'static'),
-    os.path.join(BASE_DIR, 'soccer', 'static'),
+    os.path.join(BASE_DIR, 'common', 'static'),
+    # os.path.join(BASE_DIR, 'accounts', 'static'),
+    # os.path.join(BASE_DIR, 'soccer', 'static'),
 ]
 
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/accounts/profile'
+LOGIN_REDIRECT_URL = '/common/users/'
 
+AUTH_USER_MODEL = 'common.User'
 
 if os.path.isfile(os.path.join('conf', 'local_settings.py')):
     from .local_settings import *

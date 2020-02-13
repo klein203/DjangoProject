@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import Record
-from conf.common.list import JsonListView
+from common.list import JsonListView
 from django.http.response import JsonResponse
 import datetime
 
