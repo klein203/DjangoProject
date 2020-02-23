@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-15 15:42+0800\n"
+"POT-Creation-Date: 2020-02-15 16:55+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,52 +35,52 @@ msgstr ""
 
 #: .\conf\settings.py:117
 msgid "Simplified Chinese"
-msgstr "简体中文"
+msgstr "Simplified Chinese"
 
 #: .\conf\settings.py:118
 msgid "English"
-msgstr "英语"
+msgstr "English"
 
 #: .\conf\settings.py:154
 msgid "No local settings file found"
-msgstr "没有设置本地化配置文件"
+msgstr ""
 
 #: .\demo\models.py:7 .\demo\templates\demo\record_list.html:28
 msgid "Record.Name"
-msgstr "姓名"
+msgstr ""
 
 #: .\demo\models.py:8 .\demo\templates\demo\record_list.html:29
 msgid "Record.Age"
-msgstr "年龄"
+msgstr ""
 
 #: .\demo\models.py:9 .\demo\templates\demo\record_list.html:30
 msgid "Record.Gender"
-msgstr "性别"
+msgstr ""
 
 #: .\demo\models.py:10
 msgid "DICT.GENDER.Male"
-msgstr "男"
+msgstr "Male"
 
 #: .\demo\models.py:11
 msgid "DICT.GENDER.Female"
-msgstr "女"
+msgstr "Female"
 
 #: .\demo\models.py:13 .\demo\templates\demo\record_list.html:31
 msgid "Record.DateOfBirth"
-msgstr "生日"
+msgstr ""
 
 #: .\demo\models.py:14 .\demo\templates\demo\record_list.html:32
 msgid "Record.CreateTime"
-msgstr "创建时间"
+msgstr ""
 
 #: .\demo\models.py:15 .\demo\templates\demo\record_list.html:33
 msgid "Record.UpdateTime"
-msgstr "更新时间"
+msgstr ""
 
 #: .\demo\models.py:18
 msgid "Record.ModelVerboseName"
-msgstr "记录"
+msgstr ""
 
 #: .\demo\models.py:19
 msgid "Record.ModelVerboseNamePlural"
-msgstr "记录"
+msgstr ""

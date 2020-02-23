@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     # 'bootstrap_pagination',
     'common.apps.CommonConfig',
     # 'accounts.apps.AccountsConfig',
@@ -127,6 +128,7 @@ USE_TZ = False
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'conf', 'locale'),
+    os.path.join(BASE_DIR, 'common', 'locale'),
 )
 
 
@@ -146,6 +148,21 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/common/users/'
 
 AUTH_USER_MODEL = 'common.User'
+
+
+# djangorestframework settings
+REST_FRAMEWORK = {
+    # API policy settings
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        # 'rest_framework.renderers.TemplateHTMLRenderer',
+    ],
+    # Generic view settings
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
 
 if os.path.isfile(os.path.join('conf', 'local_settings.py')):
     from .local_settings import *

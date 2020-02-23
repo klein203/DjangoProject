@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-15 15:42+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "DataTables.emptyTable"
+msgstr "表中数据为空"
+
+msgid "DataTables.info"
+msgstr "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项"
+
+msgid "DataTables.infoEmpty"
+msgstr "显示第 0 至 0 项结果，共 0 项"
+
+msgid "DataTables.infoFiltered"
+msgstr "(由 _MAX_ 项结果过滤)"
+
+msgid "DataTables.lengthMenu"
+msgstr "显示 _MENU_ 项结果"
+
+msgid "DataTables.loadingRecords"
+msgstr "载入中..."
+
+msgid "DataTables.processing"
+msgstr "处理中..."
+
+msgid "DataTables.search"
+msgstr "搜索:"
+
+msgid "DataTables.zeroRecords"
+msgstr "没有匹配结果"
+
+msgid "DataTables.paginate.first"
+msgstr "首页"
+
+msgid "DataTables.paginate.last"
+msgstr "末页"
+
+msgid "DataTables.paginate.next"
+msgstr "下页"
+
+msgid "DataTables.paginate.previous"
+msgstr "上页"
+
+msgid "DataTables.aria.sortAscending"
+msgstr ": 以升序排列此列"
+
+msgid "DataTables.aria.sortDescending"
+msgstr ": 以降序排列此列"

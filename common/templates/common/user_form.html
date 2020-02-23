@@ -1,0 +1,32 @@
+{% extends "common/base.html" %}
+{% load rest_framework %}
+{% load i18n %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">系統管理</a>
+        </li>
+        <li class="breadcrumb-item active">用戶管理</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <span class="fas fa-table"></span>
+            用户新建
+        </div>
+        <div class="card-body">
+            <form action="#" method="post">
+                {% csrf_token %}
+                {% render_form serializer %}
+                <input type="submit" value="Save"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
