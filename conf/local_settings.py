@@ -50,4 +50,4 @@ URL_FOR_LINKS = "https://crm.example.com"
 
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/common/users/'
+LOGIN_REDIRECT_URL = '/users/'

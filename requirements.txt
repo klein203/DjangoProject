@@ -1,7 +1,8 @@
 #python==3.7.3
 django==3.0.2
 djangorestframework==3.11.0
-django-bootstrap-pagination==1.7.1
-casbin==0.8.4
-SQLAlchemy>=1.2.18
-casbin_sqlalchemy_adapter==0.1.0
+django-cors-headers==3.2.1
+#django-bootstrap-pagination==1.7.1
+#casbin==0.8.4
+#SQLAlchemy>=1.2.18
+#casbin_sqlalchemy_adapter==0.1.0

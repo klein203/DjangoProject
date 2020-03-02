@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     # 'bootstrap_pagination',
     'common.apps.CommonConfig',
     # 'accounts.apps.AccountsConfig',
@@ -53,10 +54,11 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',     # Manages sessions across requests
     'django.middleware.locale.LocaleMiddleware',    # i18n
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',  # Associates users with requests using sessions
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     # 'casbin_middleware.middleware.CasbinMiddleware',
 ]
 
@@ -152,6 +154,14 @@ AUTH_USER_MODEL = 'common.User'
 
 # djangorestframework settings
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     # API policy settings
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -162,6 +172,14 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
+
+
+# cross domain
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8888'
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 if os.path.isfile(os.path.join('conf', 'local_settings.py')):

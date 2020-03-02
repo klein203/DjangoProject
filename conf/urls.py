@@ -20,6 +20,7 @@ from django.conf.urls import url
 # from django.contrib import admin
 # from rest_framework import routers
 # from common import views as common_views
+from rest_framework_jwt.views import obtain_jwt_token
 
 
 # router = routers.DefaultRouter()
@@ -30,7 +31,8 @@ urlpatterns = [
     # path('', include(router.urls)),
 
     # api authorization
-    url('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-token-auth/', obtain_jwt_token),
+    # url('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # shared
     path('favicon.ico', RedirectView.as_view(url=r'static/favicon.ico')),

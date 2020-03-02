@@ -1,5 +1,5 @@
 $.extend(true, $.fn.dataTable.defaults, {
-    "dom": 'lBrtip',
+    "dom": '<Bf<t>ip>',
     "stateSave": true,
     "pagingType": "full_numbers",
     "scrollX": true,
